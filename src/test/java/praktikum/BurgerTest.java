@@ -6,9 +6,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 @RunWith(MockitoJUnitRunner.class)
 public class BurgerTest {
 
@@ -81,13 +78,12 @@ public class BurgerTest {
         Mockito.when(bunMock.getPrice()).thenReturn(50F);
         Mockito.when(ingredient1Mock.getPrice()).thenReturn(20F);
         Mockito.when(ingredient2Mock.getPrice()).thenReturn(10F);
-        //   System.out.println(burger.getReceipt());
-        Assert.assertEquals("(==== Булочка московская ====)\n" +
-                "= filling Варенье =\n" +
-                "= sauce Тар-тар =\n" +
-                "(==== Булочка московская ====)\n" +
-                "\n" +
-                "Price: 130,000000\n",  burger.getReceipt());
+        Assert.assertEquals(String.format("(==== Булочка московская ====)%n" +
+                "= filling Варенье =%n" +
+                "= sauce Тар-тар =%n" +
+                "(==== Булочка московская ====)%n" +
+                "%n" +
+                "Price: 130,000000%n"), burger.getReceipt());
     }
 
 
