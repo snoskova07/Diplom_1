@@ -8,7 +8,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BurgerTest {
-
     @Mock
     Bun bunMock;
     @Mock
@@ -19,52 +18,37 @@ public class BurgerTest {
     @Test
     public void
     testSetBuns() {
+        float bunPrice = 50F;
+        float expectedPrice = 100F;
         Burger burger = new Burger();
-        Bun bun = new Bun("Булочка с кунжутом", 50);
-        burger.setBuns(bun);
-    }
-
-    @Test
-    public void
-    testAddIngredient() {
-        Burger burger = new Burger();
-        Ingredient ingredient = new Ingredient(IngredientType.FILLING, "варенье", 20);
-        burger.addIngredient(ingredient);
-    }
-
-    @Test
-    public void
-    testRemoveIngredient() {
-        Burger burger = new Burger();
-        burger.addIngredient(ingredient1Mock);
-        burger.removeIngredient(0);
-    }
-
-    @Test
-    public void
-    testMoveIngredient() {
-        Burger burger = new Burger();
-        burger.addIngredient(ingredient1Mock);
-        burger.addIngredient(ingredient2Mock);
-        burger.moveIngredient(0, 1);
+        Mockito.when(bunMock.getPrice()).thenReturn(bunPrice);
+        burger.setBuns(bunMock);
+        Assert.assertEquals(expectedPrice,  burger.getPrice(), 0);
     }
 
     @Test
     public void
     testGetPrice() {
+        float bunPrice = 50F;
+        float ingredient1Price = 20F;
+        float ingredient2Price = 10F;
+        float expectedPrice = 130F;
         Burger burger = new Burger();
         burger.setBuns(bunMock);
         burger.addIngredient(ingredient1Mock);
         burger.addIngredient(ingredient2Mock);
-        Mockito.when(bunMock.getPrice()).thenReturn(50F);
-        Mockito.when(ingredient1Mock.getPrice()).thenReturn(20F);
-        Mockito.when(ingredient2Mock.getPrice()).thenReturn(10F);
-        Assert.assertEquals(130F,  burger.getPrice(), 0);
+        Mockito.when(bunMock.getPrice()).thenReturn(bunPrice);
+        Mockito.when(ingredient1Mock.getPrice()).thenReturn(ingredient1Price);
+        Mockito.when(ingredient2Mock.getPrice()).thenReturn(ingredient2Price);
+        Assert.assertEquals(expectedPrice,  burger.getPrice(), 0);
     }
 
     @Test
     public void
     testGetReceipt() {
+        float bunPrice = 50F;
+        float ingredient1Price = 20F;
+        float ingredient2Price = 10F;
         Burger burger = new Burger();
         burger.setBuns(bunMock);
         burger.addIngredient(ingredient1Mock);
@@ -75,9 +59,9 @@ public class BurgerTest {
         Mockito.when(ingredient1Mock.getType()).thenReturn(IngredientType.FILLING);
         Mockito.when(ingredient2Mock.getName()).thenReturn("Тар-тар");
         Mockito.when(ingredient2Mock.getType()).thenReturn(IngredientType.SAUCE);
-        Mockito.when(bunMock.getPrice()).thenReturn(50F);
-        Mockito.when(ingredient1Mock.getPrice()).thenReturn(20F);
-        Mockito.when(ingredient2Mock.getPrice()).thenReturn(10F);
+        Mockito.when(bunMock.getPrice()).thenReturn(bunPrice);
+        Mockito.when(ingredient1Mock.getPrice()).thenReturn(ingredient1Price);
+        Mockito.when(ingredient2Mock.getPrice()).thenReturn(ingredient2Price);
         Assert.assertEquals(String.format("(==== Булочка московская ====)%n" +
                 "= filling Варенье =%n" +
                 "= sauce Тар-тар =%n" +
@@ -85,6 +69,5 @@ public class BurgerTest {
                 "%n" +
                 "Price: 130,000000%n"), burger.getReceipt());
     }
-
 
 }

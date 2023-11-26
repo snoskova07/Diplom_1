@@ -9,7 +9,7 @@ public class BunTest {
     @Test
     public void testGetName() {
         Bun bun = new Bun(name, price);
-        assertEquals(bun.getName(), name);
+        assertEquals(name, bun.getName());
     }
 
     @Test
