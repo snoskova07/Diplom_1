@@ -24,7 +24,7 @@ public class IngredientTypeTest {
     @Test
     public void testGetIngredientType() {
         Ingredient ingredient = new Ingredient(type, "name", 120);
-        assertEquals(ingredient.getType(), type);
+        assertEquals(type, ingredient.getType());
     }
 
 }

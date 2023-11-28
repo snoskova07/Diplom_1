@@ -2,6 +2,7 @@ package praktikum;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Модель бургера.
@@ -9,7 +10,7 @@ import java.util.List;
  * Ингредиенты можно перемещать и удалять.
  * Можно распечать чек с информацией о бургере.
  */
-public class Burger {
+public class Burger extends RuntimeException{
 
     public Bun bun;
     public List<Ingredient> ingredients = new ArrayList<>();
